@@ -150,31 +150,84 @@ export default function WedaLandingPage() {
     ]
   };
 
+  // Ajout pour l'effet typewriter sous le header
+  const rotatingTexts = [
+    "Envoyez de l'argent en un instant.",
+    "Épargnez sans effort, chaque jour.",
+    "Accessible à tous, sans jargon crypto.",
+    "Simple. Rapide. Sécurisé."
+  ];
+  const [currentTextIdx, setCurrentTextIdx] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  React.useEffect(() => {
+    let typingTimeout: NodeJS.Timeout;
+    let deletingTimeout: NodeJS.Timeout;
+    const fullText = rotatingTexts[currentTextIdx];
+    if (!isDeleting && displayedText.length < fullText.length) {
+      typingTimeout = setTimeout(() => {
+        setDisplayedText(fullText.slice(0, displayedText.length + 1));
+      }, 50);
+    } else if (isDeleting && displayedText.length > 0) {
+      deletingTimeout = setTimeout(() => {
+        setDisplayedText(fullText.slice(0, displayedText.length - 1));
+      }, 30);
+    } else if (!isDeleting && displayedText.length === fullText.length) {
+      typingTimeout = setTimeout(() => setIsDeleting(true), 1200);
+    } else if (isDeleting && displayedText.length === 0) {
+      setIsDeleting(false);
+      setCurrentTextIdx((prev) => (prev + 1) % rotatingTexts.length);
+    }
+    return () => {
+      clearTimeout(typingTimeout);
+      clearTimeout(deletingTimeout);
+    };
+  }, [displayedText, isDeleting, currentTextIdx, rotatingTexts]);
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
+      <motion.header
+        className="sticky top-0 z-50 shadow-xl"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        style={{
+          background: '#3A86FF',
+          backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid #e5e7eb'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center mr-3" style={{ background: 'linear-gradient(135deg, #3A86FF 0%, #00C896 100%)' }}>
-                <span className="text-white font-bold text-lg">W</span>
-              </div>
-              <span className="text-xl font-bold" style={{ color: '#111827' }}>Weda</span>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Fonctionnalités</a>
-              <a href="#testimonials" className="text-gray-600 hover:text-blue-600 transition-colors">Témoignages</a>
-              <button 
-                className="text-white px-6 py-2 rounded-lg hover:opacity-90 transition-opacity font-medium"
-                style={{ backgroundColor: '#3A86FF' }}
+              <motion.div
+                className="w-12 h-12 rounded-2xl flex items-center justify-center mr-3 shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #3A86FF 0%, #00C896 100%)' }}
+                whileHover={{ scale: 1.12, rotate: 8 }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
-                Rejoindre la liste
-              </button>
+                <span className="text-white font-extrabold text-2xl tracking-widest drop-shadow-lg">W</span>
+              </motion.div>
+              <span className="text-2xl font-extrabold tracking-tight" style={{ color: '#fff', textShadow: '0 2px 8px #3A86FF55' }}>Weda</span>
+            </div>
+            <nav className="hidden md:flex space-x-8 items-center">
+              <a href="/dashboard" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Tableau de bord</a>
+              <a href="/send" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Envoyer</a>
+              <a href="/savings" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Épargne</a>
+              <a href="#features" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Fonctionnalités</a>
+              <a href="#testimonials" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Témoignages</a>
+               <button
+                 className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
+               >
+                 <Send className="w-5 h-5 mr-1" />
+                 Rejoindre la liste
+               </button>
             </nav>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Hero Section */}
       <motion.section
@@ -191,32 +244,25 @@ export default function WedaLandingPage() {
               </span>
               {' – L\'argent intelligent pour tous'}
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Envoyez. Épargnez. Dépensez. Sans friction.
-            </p>
-            
-            <div className="max-w-2xl mx-auto mb-12">
-              <p className="text-lg leading-relaxed" style={{ color: '#111827' }}>
-                Weda est une application de paiement numérique de nouvelle génération conçue pour les communautés 
-                sous-bancarisées. Elle permet aux utilisateurs d'envoyer des fonds via un numéro de téléphone ou 
-                un e-mail, d'économiser automatiquement la monnaie restante et d'accéder à des fonctionnalités 
-                financières intelligentes – le tout sans avoir besoin d'expérience crypto. Rapide, transparent 
-                et alimenté par Stellar.
-              </p>
+            <div className="max-w-2xl mx-auto mb-8 min-h-[48px] flex items-center justify-center">
+              <span className="text-2xl md:text-3xl font-semibold text-gray-800">
+                {displayedText}
+                <span className="blinking-cursor">|</span>
+              </span>
             </div>
-
+            
             {/* Waitlist Form */}
             <div className="max-w-lg mx-auto">
               {!isSubmitted ? (
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-3 bg-white/95 rounded-2xl shadow-lg p-4 border border-blue-100">
                   <div className="flex-1 relative">
                     <input
                       type="text"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Entrez votre email ou téléphone pour rejoindre Weda"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent outline-none"
-                      style={{ focusRingColor: '#3A86FF' }}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none text-gray-900 placeholder-gray-400 bg-white"
+                      style={{ background: 'white', color: '#111827', fontWeight: 500, fontSize: '1rem' }}
                     />
                   </div>
                   <button
@@ -363,7 +409,36 @@ export default function WedaLandingPage() {
         </div>
       </motion.section>
 
-      {/* Footer */}
+      {/* Section Partenaires */}
+      <motion.section
+        className="py-16 bg-white"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: '#111827' }}>
+            Nos partenaires
+          </h2>
+          <div className="flex flex-wrap justify-center items-center gap-10">
+            {/* Logos partenaires (placeholders SVG/PNG, à remplacer par les vrais logos si besoin) */}
+            <div className="flex flex-col items-center">
+              <img src="/mixbyyas.svg" alt="Mix by Yas" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
+              <span className="text-gray-700 text-sm font-medium">Mix by Yas</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src="/moovmoney.svg" alt="Moov Money" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
+              <span className="text-gray-700 text-sm font-medium">Moov Money</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src="/paypal.svg" alt="Paypal" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
+              <span className="text-gray-700 text-sm font-medium">Paypal</span>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
       <motion.footer
         className="py-16"
         style={{ backgroundColor: '#111827', color: 'white' }}
@@ -380,15 +455,6 @@ export default function WedaLandingPage() {
               </div>
               <span className="text-xl font-bold">Weda</span>
             </div>
-            
-            <div className="flex justify-center items-center mb-8">
-              <span className="text-gray-400 mr-3">Propulsé par</span>
-              <div className="px-4 py-2 rounded-lg flex items-center" style={{ backgroundColor: '#374151' }}>
-                <div className="w-6 h-6 rounded-full mr-2" style={{ background: 'linear-gradient(135deg, #3A86FF 0%, #00C896 100%)' }}></div>
-                <span className="font-medium">Stellar</span>
-              </div>
-            </div>
-            
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
                 © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
