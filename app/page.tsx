@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from 'next/image';
 
 export default function WedaLandingPage() {
   const [email, setEmail] = useState('');
@@ -424,15 +425,15 @@ export default function WedaLandingPage() {
           <div className="flex flex-wrap justify-center items-center gap-10">
             {/* Logos partenaires (placeholders SVG/PNG, à remplacer par les vrais logos si besoin) */}
             <div className="flex flex-col items-center">
-              <img src="/mixbyyas.svg" alt="Mix by Yas" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
+              <Image src="/mixbyyas.svg" alt="Mix by Yas" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
               <span className="text-gray-700 text-sm font-medium">Mix by Yas</span>
             </div>
             <div className="flex flex-col items-center">
-              <img src="/moovmoney.svg" alt="Moov Money" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
+              <Image src="/moovmoney.svg" alt="Moov Money" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
               <span className="text-gray-700 text-sm font-medium">Moov Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <img src="/paypal.svg" alt="Paypal" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
+              <Image src="/paypal.svg" alt="Paypal" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
               <span className="text-gray-700 text-sm font-medium">Paypal</span>
             </div>
           </div>
