@@ -255,11 +255,11 @@ export default function WedaLandingPage() {
             </div>
             {/* Desktop nav */}
             <nav className="hidden md:flex space-x-4 items-center">
-              <a href="/dashboard" className="text-white/80 hover:text-white font-medium transition-colors text-lg " style={{ color: '#0097b2' }}>Tableau de bord</a>
-              <a href="/send" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Envoyer</a>
-              <a href="/savings" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Épargne</a>
-              <a href="#features" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Fonctionnalités</a>
-              <a href="#testimonials" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Témoignages</a>
+              <a href="/dashboard" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Tableau de bord</a>
+              <a href="/send" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Envoyer</a>
+              <a href="/savings" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Épargne</a>
+              <a href="#features" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Fonctionnalités</a>
+              <a href="#testimonials" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Témoignages</a>
               <button
                 className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
               >
@@ -288,11 +288,11 @@ export default function WedaLandingPage() {
               >
                 ×
               </button>
-              <a href="/dashboard" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Tableau de bord</a>
-              <a href="/send" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Envoyer</a>
-              <a href="/savings" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Épargne</a>
-              <a href="#features" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Fonctionnalités</a>
-              <a href="#testimonials" className="mb-8 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Témoignages</a>
+              <a href="/dashboard" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Tableau de bord</a>
+              <a href="/send" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Envoyer</a>
+              <a href="/savings" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Épargne</a>
+              <a href="#features" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Fonctionnalités</a>
+              <a href="#testimonials" className="mb-8 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Témoignages</a>
               <button
                 className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 onClick={() => setMobileMenuOpen(false)}
