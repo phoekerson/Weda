@@ -30,14 +30,11 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <motion.div
-                className="w-12 h-12 rounded-2xl flex items-center justify-center mr-3 shadow-lg"
-                style={{ background: 'linear-gradient(135deg, #3A86FF 0%, #00C896 100%)' }}
-                whileHover={{ scale: 1.12, rotate: 8 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <span className="text-white font-extrabold text-2xl tracking-widest drop-shadow-lg">W</span>
-              </motion.div>
+              <span className="relative flex items-center">
+                <span style={{ background: '#fff', borderRadius: '16px', padding: 6, display: 'inline-flex', boxShadow: '0 2px 8px #0001' }}>
+                  <Image src="/weda-logo.png" alt="Weda Logo" width={64} height={64} />
+                </span>
+              </span>
               <span className="text-2xl font-extrabold tracking-tight" style={{ color: '#fff', textShadow: '0 2px 8px #3A86FF55' }}>Weda</span>
             </div>
             <nav className="hidden md:flex space-x-8 items-center">
@@ -99,16 +96,8 @@ export default function DashboardPage() {
             </h2>
             <div className="flex flex-wrap justify-center items-center gap-10">
               <div className="flex flex-col items-center">
-                <Image src="/mixbyyas.svg" alt="Mix by Yas" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
-                <span className="text-gray-700 text-sm font-medium">Mix by Yas</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src="/moovmoney.svg" alt="Moov Money" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
-                <span className="text-gray-700 text-sm font-medium">Moov Money</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src="/paypal.svg" alt="Paypal" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
-                <span className="text-gray-700 text-sm font-medium">Paypal</span>
+                <Image src="/abc-logo.png" alt="ABC" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
+                <span className="text-gray-700 text-sm font-medium">ABC</span>
               </div>
             </div>
           </div>
@@ -126,9 +115,7 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center items-center mb-8">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center mr-3" style={{ background: 'linear-gradient(135deg, #3A86FF 0%, #00C896 100%)' }}>
-                <span className="text-white font-bold text-lg">W</span>
-              </div>
+              <Image src="/weda-logo.png" alt="Weda Logo" width={48} height={48} />
               <span className="text-xl font-bold">Weda</span>
             </div>
             <div className="border-t border-gray-700 pt-8">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { Send, PiggyBank, Users, CheckCircle, Star } from 'lucide-react';
+import { Send, PiggyBank, Users, CheckCircle, Star, Menu } from 'lucide-react';
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -12,6 +12,7 @@ export default function WedaLandingPage() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleSubmit = async () => {
     if (!email.trim()) return;
@@ -93,25 +94,25 @@ export default function WedaLandingPage() {
   ];
 
   const carouselImages = [
-    // Images libres de droits, liens Unsplash/Pexels (à remplacer par des images locales si besoin)
+    
     {
-      url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
+      url: "/image1.jpg",
       alt: "Jeune femme africaine souriante"
     },
     {
-      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+      url: "/image2.jpg",
       alt: "Homme africain heureux"
     },
     {
-      url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+      url: "/image3.jpg",
       alt: "Groupe d'amis africains"
     },
     {
-      url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+      url: "/image4.jpg",
       alt: "Jeune femme africaine avec smartphone"
     },
     {
-      url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+      url: "/image5.jpg",
       alt: "Homme africain souriant en extérieur"
     }
   ];
@@ -233,7 +234,7 @@ export default function WedaLandingPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         style={{
-          background: '#3A86FF',
+          background: '#fff',
           backdropFilter: 'blur(12px)',
           borderBottom: '1px solid #e5e7eb'
         }}
@@ -241,31 +242,67 @@ export default function WedaLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <motion.div
-                className="w-12 h-12 rounded-2xl flex items-center justify-center mr-3 shadow-lg"
-                style={{ background: 'linear-gradient(135deg, #3A86FF 0%, #00C896 100%)' }}
-                whileHover={{ scale: 1.12, rotate: 8 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <span className="text-white font-extrabold text-2xl tracking-widest drop-shadow-lg">W</span>
-              </motion.div>
-              <span className="text-2xl font-extrabold tracking-tight" style={{ color: '#fff', textShadow: '0 2px 8px #3A86FF55' }}>Weda</span>
+              <div className="flex items-center">
+                <Image
+                  src="/weda-logo.png"
+                  alt="Weda Logo"
+                  width={180}
+                  height={64}
+                  className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 xl:h-28"
+                  style={{ maxWidth: '70vw', height: 'auto' }}
+                />
+              </div>
             </div>
-            <nav className="hidden md:flex space-x-8 items-center">
-              <a href="/dashboard" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Tableau de bord</a>
-              <a href="/send" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Envoyer</a>
-              <a href="/savings" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Épargne</a>
-              <a href="#features" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Fonctionnalités</a>
-              <a href="#testimonials" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Témoignages</a>
-               <button
-                 className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
-               >
-                 <Send className="w-5 h-5 mr-1" />
-                 Rejoindre la liste
-               </button>
+            {/* Desktop nav */}
+            <nav className="hidden md:flex space-x-4 items-center">
+              <a href="/dashboard" className="text-white/80 hover:text-white font-medium transition-colors text-lg " style={{ color: '#0097b2' }}>Tableau de bord</a>
+              <a href="/send" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Envoyer</a>
+              <a href="/savings" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Épargne</a>
+              <a href="#features" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Fonctionnalités</a>
+              <a href="#testimonials" className="text-white/80 hover:text-white font-medium transition-colors text-lg" style={{ color: '#0097b2' }}>Témoignages</a>
+              <button
+                className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
+              >
+                <Send className="w-5 h-5 mr-1" />
+                Rejoindre la liste
+              </button>
             </nav>
+            {/* Burger menu button */}
+            <button
+              className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label="Ouvrir le menu"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="w-8 h-8 text-[#0097b2]" />
+            </button>
           </div>
         </div>
+        {/* Mobile menu overlay */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 bg-black/40 flex justify-end">
+            <div className="w-3/4 max-w-xs bg-white h-full shadow-lg p-6 flex flex-col">
+              <button
+                className="self-end mb-8 text-2xl text-[#0097b2]"
+                aria-label="Fermer le menu"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                ×
+              </button>
+              <a href="/dashboard" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Tableau de bord</a>
+              <a href="/send" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Envoyer</a>
+              <a href="/savings" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Épargne</a>
+              <a href="#features" className="mb-4 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Fonctionnalités</a>
+              <a href="#testimonials" className="mb-8 text-[#0097b2] text-lg font-semibold" onClick={() => setMobileMenuOpen(false)}>Témoignages</a>
+              <button
+                className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Send className="w-5 h-5 mr-1" />
+                Rejoindre la liste
+              </button>
+            </div>
+          </div>
+        )}
       </motion.header>
 
       {/* Hero Section */}
@@ -463,24 +500,9 @@ export default function WedaLandingPage() {
             Nos partenaires
           </h2>
           <div className="flex flex-wrap justify-center items-center gap-10">
-            {/* Logos partenaires (placeholders SVG/PNG, à remplacer par les vrais logos si besoin) */}
             <div className="flex flex-col items-center">
-              <div className="h-14 w-20 bg-gray-200 rounded-lg flex items-center justify-center mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }}>
-                <span className="text-gray-600 text-xs">Mix by Yas</span>
-              </div>
-              <span className="text-gray-700 text-sm font-medium">Mix by Yas</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="h-14 w-20 bg-gray-200 rounded-lg flex items-center justify-center mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }}>
-                <span className="text-gray-600 text-xs">Moov Money</span>
-              </div>
-              <span className="text-gray-700 text-sm font-medium">Moov Money</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="h-14 w-20 bg-gray-200 rounded-lg flex items-center justify-center mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }}>
-                <span className="text-gray-600 text-xs">Paypal</span>
-              </div>
-              <span className="text-gray-700 text-sm font-medium">Paypal</span>
+              <Image src="/abc-logo.png" alt="ABC" width={120} height={80} className="h-20 w-auto mb-2" />
+              <span className="text-gray-700 text-sm font-medium">ABC</span>
             </div>
           </div>
         </div>
@@ -497,10 +519,8 @@ export default function WedaLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center items-center mb-8">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center mr-3" style={{ background: 'linear-gradient(135deg, #3A86FF 0%, #00C896 100%)' }}>
-                <span className="text-white font-bold text-lg">W</span>
-              </div>
-              <span className="text-xl font-bold">Weda</span>
+              <Image src="/weda-logo.png" alt="Weda Logo" width={100} height={40} style={{ marginRight: 12 }} />
+
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
