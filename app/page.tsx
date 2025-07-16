@@ -2,6 +2,10 @@
 
 import React, { useState } from 'react';
 import { Send, PiggyBank, Users, Mail, Phone, CheckCircle, Star } from 'lucide-react';
+import Slider from "react-slick";
+import { motion } from "framer-motion";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function WedaLandingPage() {
   const [email, setEmail] = useState('');
@@ -60,6 +64,92 @@ export default function WedaLandingPage() {
     }
   ];
 
+  const carouselImages = [
+    // Images libres de droits, liens Unsplash/Pexels (à remplacer par des images locales si besoin)
+    {
+      url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
+      alt: "Jeune femme africaine souriante"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+      alt: "Homme africain heureux"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+      alt: "Groupe d'amis africains"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+      alt: "Jeune femme africaine avec smartphone"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+      alt: "Homme africain souriant en extérieur"
+    }
+  ];
+
+  const moreTestimonials = [
+    ...testimonials,
+    {
+      quote: "J'ai pu économiser sans même m'en rendre compte. L'application est super intuitive !",
+      name: "Fatou D.",
+      tag: "Comptable, Abidjan",
+      initials: "FD",
+      color: "#00C896"
+    },
+    {
+      quote: "Enfin une solution simple pour envoyer de l'argent à ma famille. Merci Weda !",
+      name: "Jean-Marc T.",
+      tag: "Chauffeur, Cotonou",
+      initials: "JT",
+      color: "#3A86FF"
+    },
+    {
+      quote: "J'adore l'arrondi automatique, ça m'aide à mettre de côté sans effort.",
+      name: "Awa B.",
+      tag: "Étudiante, Bamako",
+      initials: "AB",
+      color: "#00C896"
+    },
+    {
+      quote: "Simple, rapide, efficace. Je recommande à tous mes amis !",
+      name: "Koffi E.",
+      tag: "Artisan, Lomé",
+      initials: "KE",
+      color: "#3A86FF"
+    }
+  ];
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 700,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    arrows: false,
+    pauseOnHover: true
+  };
+
+  const testimonialSliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 700,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 1 }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
       {/* Header */}
@@ -87,7 +177,12 @@ export default function WedaLandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <motion.section
+        className="relative overflow-hidden"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: '#111827' }}>
@@ -150,10 +245,44 @@ export default function WedaLandingPage() {
           <div className="absolute top-20 left-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{ backgroundColor: '#3A86FF' }}></div>
           <div className="absolute top-40 right-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{ backgroundColor: '#00C896', animationDelay: '2s' }}></div>
         </div>
-      </section>
+      </motion.section>
+
+      {/* Carousel Section - Images de personnes africaines */}
+      <motion.section
+        className="py-12 bg-white"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8" style={{ color: '#111827' }}>
+            Une communauté vivante et connectée
+          </h2>
+          <Slider {...sliderSettings}>
+            {carouselImages.map((img, idx) => (
+              <div key={idx} className="flex justify-center">
+                <img
+                  src={img.url}
+                  alt={img.alt}
+                  className="rounded-3xl shadow-xl object-cover w-full h-72 md:h-96 transition-transform duration-500 hover:scale-105"
+                  style={{ maxWidth: 600 }}
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </motion.section>
 
       {/* Benefits Section */}
-      <section id="features" className="py-24 bg-white">
+      <motion.section
+        id="features"
+        className="py-24 bg-white"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#111827' }}>
@@ -182,10 +311,18 @@ export default function WedaLandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24" style={{ backgroundColor: '#F9FAFB' }}>
+      <motion.section
+        id="testimonials"
+        className="py-24"
+        style={{ backgroundColor: '#F9FAFB' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#111827' }}>
@@ -195,10 +332,14 @@ export default function WedaLandingPage() {
               Retours réels de testeurs précoces et membres de la communauté
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <Slider {...testimonialSliderSettings}>
+            {moreTestimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 mx-2 flex flex-col h-full"
+                whileHover={{ scale: 1.04, boxShadow: "0 8px 32px rgba(58,134,255,0.15)" }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <div className="flex items-center mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-current" style={{ color: '#00C896' }} />
@@ -207,7 +348,7 @@ export default function WedaLandingPage() {
                 <blockquote className="text-gray-700 mb-6 text-lg leading-relaxed">
                   « {testimonial.quote} »
                 </blockquote>
-                <div className="flex items-center">
+                <div className="flex items-center mt-auto">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold mr-4" style={{ backgroundColor: testimonial.color }}>
                     {testimonial.initials}
                   </div>
@@ -216,14 +357,21 @@ export default function WedaLandingPage() {
                     <div className="text-gray-500 text-sm">{testimonial.tag}</div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </Slider>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="py-16" style={{ backgroundColor: '#111827', color: 'white' }}>
+      <motion.footer
+        className="py-16"
+        style={{ backgroundColor: '#111827', color: 'white' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center items-center mb-8">
@@ -248,7 +396,7 @@ export default function WedaLandingPage() {
             </div>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
