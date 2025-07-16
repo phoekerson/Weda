@@ -393,7 +393,7 @@ export default function WedaLandingPage() {
                   ))}
                 </div>
                 <blockquote className="text-gray-700 mb-6 text-lg leading-relaxed">
-                  « {testimonial.quote} »
+                  « {testimonial.quote.replace("'", "&apos;")} »
                 </blockquote>
                 <div className="flex items-center mt-auto">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold mr-4" style={{ backgroundColor: testimonial.color }}>
@@ -425,15 +425,15 @@ export default function WedaLandingPage() {
           <div className="flex flex-wrap justify-center items-center gap-10">
             {/* Logos partenaires (placeholders SVG/PNG, à remplacer par les vrais logos si besoin) */}
             <div className="flex flex-col items-center">
-              <Image src="/mixbyyas.svg" alt="Mix by Yas" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
+              <Image src="/mixbyyas.svg" alt="Mix by Yas" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
               <span className="text-gray-700 text-sm font-medium">Mix by Yas</span>
             </div>
             <div className="flex flex-col items-center">
-              <Image src="/moovmoney.svg" alt="Moov Money" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
+              <Image src="/moovmoney.svg" alt="Moov Money" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
               <span className="text-gray-700 text-sm font-medium">Moov Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <Image src="/paypal.svg" alt="Paypal" className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
+              <Image src="/paypal.svg" alt="Paypal" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
               <span className="text-gray-700 text-sm font-medium">Paypal</span>
             </div>
           </div>
@@ -458,7 +458,7 @@ export default function WedaLandingPage() {
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
-                © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
+                © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
               </p>
             </div>
           </div>
