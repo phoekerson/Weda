@@ -6,7 +6,6 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image from 'next/image';
 
 export default function WedaLandingPage() {
   const [email, setEmail] = useState('');
@@ -17,10 +16,37 @@ export default function WedaLandingPage() {
     if (!email.trim()) return;
     
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitted(true);
-    setIsLoading(false);
+    
+    try {
+      const formData = {
+        access_key: "820d801d-8068-46bd-8075-f714f5673be9", // Remplacez par votre clé d'accès Web3Forms
+        email: email,
+        subject: "Nouvelle inscription à la liste d'attente Weda",
+        message: `Nouvel utilisateur inscrit à la liste d'attente: ${email}`
+      };
+      
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        console.log(result);
+        setIsSubmitted(true);
+      } else {
+        console.error("Erreur lors de l'envoi:", result);
+      }
+    } catch (error) {
+      console.error("Erreur:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const benefits = [
@@ -163,8 +189,8 @@ export default function WedaLandingPage() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   React.useEffect(() => {
-    let typingTimeout: NodeJS.Timeout;
-    let deletingTimeout: NodeJS.Timeout;
+    let typingTimeout: string | number | NodeJS.Timeout | undefined;
+    let deletingTimeout: string | number | NodeJS.Timeout | undefined;
     const fullText = rotatingTexts[currentTextIdx];
     if (!isDeleting && displayedText.length < fullText.length) {
       typingTimeout = setTimeout(() => {
@@ -188,6 +214,16 @@ export default function WedaLandingPage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
+      <style jsx>{`
+        .blinking-cursor {
+          animation: blink 1s infinite;
+        }
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+      `}</style>
+      
       {/* Header */}
       <motion.header
         className="sticky top-0 z-50 shadow-xl"
@@ -252,13 +288,13 @@ export default function WedaLandingPage() {
               </span>
             </div>
             
-            {/* Waitlist Form */}
+            {/* Waitlist Form avec Web3Forms */}
             <div className="max-w-lg mx-auto">
               {!isSubmitted ? (
                 <div className="flex flex-col sm:flex-row gap-3 bg-white/95 rounded-2xl shadow-lg p-4 border border-blue-100">
                   <div className="flex-1 relative">
                     <input
-                      type="text"
+                      type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Entrez votre email ou téléphone pour rejoindre Weda"
@@ -393,7 +429,7 @@ export default function WedaLandingPage() {
                   ))}
                 </div>
                 <blockquote className="text-gray-700 mb-6 text-lg leading-relaxed">
-                  « {testimonial.quote.replace("'", "&apos;")} »
+                  « {testimonial.quote} »
                 </blockquote>
                 <div className="flex items-center mt-auto">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold mr-4" style={{ backgroundColor: testimonial.color }}>
@@ -425,15 +461,21 @@ export default function WedaLandingPage() {
           <div className="flex flex-wrap justify-center items-center gap-10">
             {/* Logos partenaires (placeholders SVG/PNG, à remplacer par les vrais logos si besoin) */}
             <div className="flex flex-col items-center">
-              <Image src="/mixbyyas.svg" alt="Mix by Yas" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
+              <div className="h-14 w-20 bg-gray-200 rounded-lg flex items-center justify-center mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }}>
+                <span className="text-gray-600 text-xs">Mix by Yas</span>
+              </div>
               <span className="text-gray-700 text-sm font-medium">Mix by Yas</span>
             </div>
             <div className="flex flex-col items-center">
-              <Image src="/moovmoney.svg" alt="Moov Money" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
+              <div className="h-14 w-20 bg-gray-200 rounded-lg flex items-center justify-center mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }}>
+                <span className="text-gray-600 text-xs">Moov Money</span>
+              </div>
               <span className="text-gray-700 text-sm font-medium">Moov Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <Image src="/paypal.svg" alt="Paypal" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
+              <div className="h-14 w-20 bg-gray-200 rounded-lg flex items-center justify-center mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }}>
+                <span className="text-gray-600 text-xs">Paypal</span>
+              </div>
               <span className="text-gray-700 text-sm font-medium">Paypal</span>
             </div>
           </div>
@@ -458,7 +500,7 @@ export default function WedaLandingPage() {
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
-                © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
+                © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
               </p>
             </div>
           </div>
