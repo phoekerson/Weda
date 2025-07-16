@@ -21,7 +21,7 @@ export default function Footer() {
           </div>
           <div className="border-t border-gray-700 pt-8">
             <p className="text-gray-400">
-              © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
+              © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
             </p>
           </div>
         </div>

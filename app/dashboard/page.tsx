@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { Send, PiggyBank, CheckCircle } from "lucide-react";
+import { Send, PiggyBank } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const fakeTransactions = [
@@ -11,7 +12,7 @@ const fakeTransactions = [
 ];
 
 export default function DashboardPage() {
-  const [balance, setBalance] = useState(120.5); // XLM
+  const [balance] = useState(120.5); // XLM
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F9FAFB' }}>
       {/* Header copié de la landing page */}
@@ -43,7 +44,7 @@ export default function DashboardPage() {
               <a href="/dashboard" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Tableau de bord</a>
               <a href="/send" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Envoyer</a>
               <a href="/savings" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Épargne</a>
-              <a href="/" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Accueil</a>
+              <Link href="/" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Accueil</Link>
               <button
                 className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
               >
@@ -64,7 +65,7 @@ export default function DashboardPage() {
         <div className="flex gap-4 mb-8 justify-center">
           <Link href="/send">
             <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold shadow-lg hover:bg-blue-700 transition">
-              <Send className="w-5 h-5" /> Envoyer de l'argent
+              <Send className="w-5 h-5" /> Envoyer de l&apos;argent
             </button>
           </Link>
           <Link href="/savings">
@@ -90,6 +91,28 @@ export default function DashboardPage() {
             </li>
           ))}
         </ul>
+        {/* Section Partenaires (exemple d'utilisation de <Image />) */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: '#111827' }}>
+              Nos partenaires
+            </h2>
+            <div className="flex flex-wrap justify-center items-center gap-10">
+              <div className="flex flex-col items-center">
+                <Image src="/mixbyyas.svg" alt="Mix by Yas" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #3A86FF22)' }} />
+                <span className="text-gray-700 text-sm font-medium">Mix by Yas</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/moovmoney.svg" alt="Moov Money" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #00C89622)' }} />
+                <span className="text-gray-700 text-sm font-medium">Moov Money</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/paypal.svg" alt="Paypal" width={80} height={56} className="h-14 w-auto mb-2" style={{ filter: 'drop-shadow(0 2px 8px #11182722)' }} />
+                <span className="text-gray-700 text-sm font-medium">Paypal</span>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       {/* Footer copié de la landing page */}
       <motion.footer
@@ -110,7 +133,7 @@ export default function DashboardPage() {
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
-                © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
+                © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
               </p>
             </div>
           </div>
