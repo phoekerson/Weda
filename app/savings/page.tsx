@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function SavingsPage() {
   const [purchase, setPurchase] = useState("");
-  const [residue, setResidue] = useState<number | null>(null);
   const [savings, setSavings] = useState(5.2); // solde d'épargne
   const [message, setMessage] = useState("");
 
@@ -14,11 +14,9 @@ export default function SavingsPage() {
     if (!isNaN(amount) && amount > 0) {
       const rounded = Math.ceil(amount);
       const diff = +(rounded - amount).toFixed(2);
-      setResidue(diff);
       setSavings(prev => +(prev + diff).toFixed(2));
-      setMessage(`Achat de ${amount} XLM → Résidu de ${diff} XLM ajouté à l'épargne !`);
+      setMessage(`Achat de ${amount} XLM → Résidu de ${diff} XLM ajouté à l&apos;épargne !`);
     } else {
-      setResidue(null);
       setMessage("Veuillez entrer un montant valide.");
     }
   };
@@ -54,7 +52,7 @@ export default function SavingsPage() {
               <a href="/dashboard" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Tableau de bord</a>
               <a href="/send" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Envoyer</a>
               <a href="/savings" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Épargne</a>
-              <a href="/" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Accueil</a>
+              <Link href="/" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Accueil</Link>
               <button
                 className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
               >
@@ -70,7 +68,7 @@ export default function SavingsPage() {
         <h1 className="text-3xl font-bold mb-6 text-[#111827]">Épargne automatique</h1>
         <form onSubmit={handleSimulate} className="bg-gray-50 rounded-2xl p-6 shadow-lg space-y-4 mb-6">
           <div>
-            <label className="block mb-1 font-semibold text-gray-800">Montant de l'achat (XLM)</label>
+            <label className="block mb-1 font-semibold text-gray-800">Montant de l&apos;achat (XLM)</label>
             <input
               type="number"
               value={purchase}
@@ -86,14 +84,14 @@ export default function SavingsPage() {
             type="submit"
             className="w-full bg-emerald-500 text-white py-3 rounded-lg font-semibold hover:bg-emerald-600 transition shadow-lg"
           >
-            Ajouter le résidu à l'épargne
+            Ajouter le résidu à l&apos;épargne
           </button>
         </form>
         {message && (
-          <div className="mb-4 text-center text-emerald-700 font-semibold">{message}</div>
+          <div className="mb-4 text-center text-emerald-700 font-semibold">{message.replace("'", "&apos;")}</div>
         )}
         <div className="bg-emerald-100 rounded-2xl p-6 shadow-lg flex flex-col items-center">
-          <span className="text-gray-700 font-semibold">Solde du portefeuille d'épargne</span>
+          <span className="text-gray-700 font-semibold">Solde du portefeuille d&apos;épargne</span>
           <span className="text-3xl font-bold text-emerald-700">{savings.toFixed(2)} XLM</span>
         </div>
       </main>
@@ -116,7 +114,7 @@ export default function SavingsPage() {
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
-                © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
+                © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
               </p>
             </div>
           </div>

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function SendPage() {
   const [recipient, setRecipient] = useState("");
@@ -53,7 +54,7 @@ export default function SendPage() {
               <a href="/dashboard" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Tableau de bord</a>
               <a href="/send" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Envoyer</a>
               <a href="/savings" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Épargne</a>
-              <a href="/" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Accueil</a>
+              <Link href="/" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Accueil</Link>
               <button
                 className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
               >
@@ -66,7 +67,7 @@ export default function SendPage() {
       </motion.header>
       {/* Main content */}
       <main className="flex-1 max-w-md mx-auto py-16 px-4">
-        <h1 className="text-3xl font-bold mb-6 text-[#111827]">Envoyer de l'argent</h1>
+        <h1 className="text-3xl font-bold mb-6 text-[#111827]">Envoyer de l&apos;argent</h1>
         <form onSubmit={handleSend} className="bg-gray-50 rounded-2xl p-6 shadow-lg space-y-4">
           <div>
             <label className="block mb-1 font-semibold text-gray-800">Email ou téléphone du destinataire</label>
@@ -126,7 +127,7 @@ export default function SendPage() {
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
-                © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
+                © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
               </p>
             </div>
           </div>
