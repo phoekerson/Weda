@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Send, PiggyBank, Users, Mail, Phone, CheckCircle, Star } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Send, PiggyBank, Users, CheckCircle, Star } from 'lucide-react';
 import Slider from "react-slick";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -177,13 +178,14 @@ export default function WedaLandingPage() {
     ]
   };
 
-  // Ajout pour l'effet typewriter sous le header
-  const rotatingTexts = [
+  // Correction: Utilisation de useMemo pour éviter la re-création du tableau à chaque render
+  const rotatingTexts = useMemo(() => [
     "Envoyez de l'argent en un instant.",
     "Épargnez sans effort, chaque jour.",
     "Accessible à tous, sans jargon crypto.",
     "Simple. Rapide. Sécurisé."
-  ];
+  ], []);
+
   const [currentTextIdx, setCurrentTextIdx] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -345,9 +347,11 @@ export default function WedaLandingPage() {
           <Slider {...sliderSettings}>
             {carouselImages.map((img, idx) => (
               <div key={idx} className="flex justify-center">
-                <img
+                <Image
                   src={img.url}
                   alt={img.alt}
+                  width={600}
+                  height={400}
                   className="rounded-3xl shadow-xl object-cover w-full h-72 md:h-96 transition-transform duration-500 hover:scale-105"
                   style={{ maxWidth: 600 }}
                 />
@@ -372,7 +376,7 @@ export default function WedaLandingPage() {
               Pourquoi choisir Weda ?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Conçu pour l'avenir des paiements numériques en Afrique et au-delà
+              Conçu pour l&apos;avenir des paiements numériques en Afrique et au-delà
             </p>
           </div>
           
@@ -500,7 +504,7 @@ export default function WedaLandingPage() {
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
-                © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
+                © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
               </p>
             </div>
           </div>
