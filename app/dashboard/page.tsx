@@ -31,9 +31,8 @@ export default function DashboardPage() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
               <span className="relative flex items-center">
-                <span style={{ background: '#fff', borderRadius: '16px', padding: 6, display: 'inline-flex', boxShadow: '0 2px 8px #0001' }}>
-                  <Image src="/weda-logo.png" alt="Weda Logo" width={64} height={64} />
-                </span>
+                  <Image src="/weda-logo.png" alt="Weda Logo" width={250} height={64} />
+    
               </span>
               <span className="text-2xl font-extrabold tracking-tight" style={{ color: '#fff', textShadow: '0 2px 8px #3A86FF55' }}>Weda</span>
             </div>

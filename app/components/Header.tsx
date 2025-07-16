@@ -25,9 +25,7 @@ export default function Header() {
               whileHover={{ scale: 1.12, rotate: 8 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <span className="text-white font-extrabold text-2xl tracking-widest drop-shadow-lg">W</span>
             </motion.div>
-            <span className="text-2xl font-extrabold tracking-tight" style={{ color: '#fff', textShadow: '0 2px 8px #3A86FF55' }}>Weda</span>
           </div>
           <nav className="hidden md:flex space-x-8 items-center">
             <Link href="/" className="text-white/80 hover:text-white font-medium transition-colors text-lg">Accueil</Link>
