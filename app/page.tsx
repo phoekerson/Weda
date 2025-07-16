@@ -429,7 +429,7 @@ export default function WedaLandingPage() {
                   ))}
                 </div>
                 <blockquote className="text-gray-700 mb-6 text-lg leading-relaxed">
-                  « {testimonial.quote} »
+                  « {testimonial.quote.replace(/'/g, "&apos;")} »
                 </blockquote>
                 <div className="flex items-center mt-auto">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold mr-4" style={{ backgroundColor: testimonial.color }}>
@@ -500,7 +500,7 @@ export default function WedaLandingPage() {
             </div>
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400">
-                © 2025 Weda. Tous droits réservés. Rendre l'argent plus intelligent pour tous.
+                © 2025 Weda. Tous droits réservés. Rendre l&apos;argent plus intelligent pour tous.
               </p>
             </div>
           </div>
