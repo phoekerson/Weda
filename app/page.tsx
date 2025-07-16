@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { Send, PiggyBank, Users, CheckCircle, Star, Menu } from 'lucide-react';
+import { Send, PiggyBank, Users, CheckCircle, Star, Menu, ChevronRight, BarChart3, MessageCircle, X } from 'lucide-react';
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -254,55 +254,173 @@ export default function WedaLandingPage() {
               </div>
             </div>
             {/* Desktop nav */}
-            <nav className="hidden md:flex space-x-4 items-center">
-              <a href="/dashboard" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Tableau de bord</a>
-              <a href="/send" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Envoyer</a>
-              <a href="/savings" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Épargne</a>
-              <a href="#features" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Fonctionnalités</a>
-              <a href="#testimonials" className="px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40">Témoignages</a>
-              <button
-                className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
-              >
-                <Send className="w-5 h-5 mr-1" />
-                Rejoindre la liste
-              </button>
-            </nav>
-            {/* Burger menu button */}
-            <button
-              className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              aria-label="Ouvrir le menu"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <Menu className="w-8 h-8 text-[#0097b2]" />
-            </button>
+            {/* Desktop nav */}
+<nav className="hidden md:flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-2xl px-3 py-2 border border-white/20 shadow-lg">
+  <div className="flex items-center space-x-1">
+    <a 
+      href="/dashboard" 
+      className="group relative px-5 py-2.5 rounded-xl font-medium text-[#0097b2] bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2] hover:to-[#00b4d8] hover:text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/50 focus:ring-offset-2 focus:ring-offset-transparent"
+    >
+      <span className="relative z-10">Tableau de bord</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </a>
+    
+    <a 
+      href="/send" 
+      className="group relative px-5 py-2.5 rounded-xl font-medium text-[#0097b2] bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2] hover:to-[#00b4d8] hover:text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/50 focus:ring-offset-2 focus:ring-offset-transparent"
+    >
+      <span className="relative z-10">Envoyer</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </a>
+    
+    <a 
+      href="/savings" 
+      className="group relative px-5 py-2.5 rounded-xl font-medium text-[#0097b2] bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2] hover:to-[#00b4d8] hover:text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/50 focus:ring-offset-2 focus:ring-offset-transparent"
+    >
+      <span className="relative z-10">Épargne</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </a>
+    
+    <a 
+      href="#features" 
+      className="group relative px-5 py-2.5 rounded-xl font-medium text-[#0097b2] bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2] hover:to-[#00b4d8] hover:text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/50 focus:ring-offset-2 focus:ring-offset-transparent"
+    >
+      <span className="relative z-10">Fonctionnalités</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </a>
+    
+    <a 
+      href="#testimonials" 
+      className="group relative px-5 py-2.5 rounded-xl font-medium text-[#0097b2] bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2] hover:to-[#00b4d8] hover:text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/50 focus:ring-offset-2 focus:ring-offset-transparent"
+    >
+      <span className="relative z-10">Témoignages</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </a>
+  </div>
+  
+  <div className="w-px h-8 bg-white/20 mx-3"></div>
+  
+  <button className="group relative flex items-center gap-2 text-white px-6 py-3 rounded-xl font-semibold shadow-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-transparent">
+    <Send className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+    <span className="relative">Rejoindre la liste</span>
+    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  </button>
+</nav>
+
+{/* Burger menu button */}
+<button
+  className="md:hidden flex items-center justify-center p-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/50 focus:ring-offset-2 focus:ring-offset-transparent"
+  aria-label="Ouvrir le menu"
+  onClick={() => setMobileMenuOpen(true)}
+>
+  <Menu className="w-6 h-6 text-[#0097b2]" />
+</button>
           </div>
         </div>
         {/* Mobile menu overlay */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 bg-black/40 flex justify-end">
-            <div className="w-3/4 max-w-xs bg-white h-full shadow-lg p-6 flex flex-col">
-              <button
-                className="self-end mb-8 text-2xl text-[#0097b2]"
-                aria-label="Fermer le menu"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                ×
-              </button>
-              <a href="/dashboard" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Tableau de bord</a>
-              <a href="/send" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Envoyer</a>
-              <a href="/savings" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Épargne</a>
-              <a href="#features" className="mb-4 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Fonctionnalités</a>
-              <a href="#testimonials" className="mb-8 px-4 py-2 rounded-lg font-medium text-[#0097b2] bg-transparent hover:bg-[#0097b2] hover:text-white transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-[#0097b2]/40" onClick={() => setMobileMenuOpen(false)}>Témoignages</a>
-              <button
-                className="flex items-center gap-2 text-white px-7 py-3 rounded-xl font-semibold shadow-lg bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Send className="w-5 h-5 mr-1" />
-                Rejoindre la liste
-              </button>
-            </div>
+  <div className="fixed inset-0 z-50 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm flex justify-end">
+    <div className="w-4/5 max-w-sm bg-white/95 backdrop-blur-xl h-full shadow-2xl border-l border-white/20 flex flex-col animate-slide-in-right">
+      {/* Header avec bouton de fermeture */}
+      <div className="flex items-center justify-between p-6 border-b border-gray-100">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-gradient-to-r from-[#0097b2] to-[#00b4d8] rounded-lg flex items-center justify-center">
+            <Menu className="w-4 h-4 text-white" />
           </div>
-        )}
+          <span className="font-semibold text-gray-800">Menu</span>
+        </div>
+        <button
+          className="group p-2 rounded-xl hover:bg-red-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-200"
+          aria-label="Fermer le menu"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <X className="w-6 h-6 text-gray-500 group-hover:text-red-500 transition-colors duration-200" />
+        </button>
+      </div>
+
+      {/* Navigation Links */}
+      <nav className="flex-1 px-6 py-4 space-y-2">
+        <a 
+          href="/dashboard" 
+          className="group flex items-center gap-4 px-4 py-4 rounded-2xl font-medium text-gray-700 bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2]/10 hover:to-[#00b4d8]/10 hover:text-[#0097b2] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/30 focus:ring-offset-2 focus:ring-offset-white border-2 border-transparent hover:border-[#0097b2]/20" 
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div className="w-10 h-10 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl flex items-center justify-center group-hover:from-[#0097b2]/20 group-hover:to-[#00b4d8]/20 transition-all duration-300">
+            <BarChart3 className="w-5 h-5 text-[#0097b2]" />
+          </div>
+          <span className="text-lg">Tableau de bord</span>
+          <ChevronRight className="w-5 h-5 ml-auto text-gray-400 group-hover:text-[#0097b2] transition-colors duration-300" />
+        </a>
+
+        <a 
+          href="/send" 
+          className="group flex items-center gap-4 px-4 py-4 rounded-2xl font-medium text-gray-700 bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2]/10 hover:to-[#00b4d8]/10 hover:text-[#0097b2] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/30 focus:ring-offset-2 focus:ring-offset-white border-2 border-transparent hover:border-[#0097b2]/20" 
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div className="w-10 h-10 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl flex items-center justify-center group-hover:from-[#0097b2]/20 group-hover:to-[#00b4d8]/20 transition-all duration-300">
+            <Send className="w-5 h-5 text-[#0097b2]" />
+          </div>
+          <span className="text-lg">Envoyer</span>
+          <ChevronRight className="w-5 h-5 ml-auto text-gray-400 group-hover:text-[#0097b2] transition-colors duration-300" />
+        </a>
+
+        <a 
+          href="/savings" 
+          className="group flex items-center gap-4 px-4 py-4 rounded-2xl font-medium text-gray-700 bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2]/10 hover:to-[#00b4d8]/10 hover:text-[#0097b2] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/30 focus:ring-offset-2 focus:ring-offset-white border-2 border-transparent hover:border-[#0097b2]/20" 
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div className="w-10 h-10 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl flex items-center justify-center group-hover:from-[#0097b2]/20 group-hover:to-[#00b4d8]/20 transition-all duration-300">
+            <PiggyBank className="w-5 h-5 text-[#0097b2]" />
+          </div>
+          <span className="text-lg">Épargne</span>
+          <ChevronRight className="w-5 h-5 ml-auto text-gray-400 group-hover:text-[#0097b2] transition-colors duration-300" />
+        </a>
+
+        <a 
+          href="#features" 
+          className="group flex items-center gap-4 px-4 py-4 rounded-2xl font-medium text-gray-700 bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2]/10 hover:to-[#00b4d8]/10 hover:text-[#0097b2] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/30 focus:ring-offset-2 focus:ring-offset-white border-2 border-transparent hover:border-[#0097b2]/20" 
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div className="w-10 h-10 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl flex items-center justify-center group-hover:from-[#0097b2]/20 group-hover:to-[#00b4d8]/20 transition-all duration-300">
+            <Star className="w-5 h-5 text-[#0097b2]" />
+          </div>
+          <span className="text-lg">Fonctionnalités</span>
+          <ChevronRight className="w-5 h-5 ml-auto text-gray-400 group-hover:text-[#0097b2] transition-colors duration-300" />
+        </a>
+
+        <a 
+          href="#testimonials" 
+          className="group flex items-center gap-4 px-4 py-4 rounded-2xl font-medium text-gray-700 bg-transparent hover:bg-gradient-to-r hover:from-[#0097b2]/10 hover:to-[#00b4d8]/10 hover:text-[#0097b2] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0097b2]/30 focus:ring-offset-2 focus:ring-offset-white border-2 border-transparent hover:border-[#0097b2]/20" 
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div className="w-10 h-10 bg-gradient-to-r from-[#0097b2]/10 to-[#00b4d8]/10 rounded-xl flex items-center justify-center group-hover:from-[#0097b2]/20 group-hover:to-[#00b4d8]/20 transition-all duration-300">
+            <MessageCircle className="w-5 h-5 text-[#0097b2]" />
+          </div>
+          <span className="text-lg">Témoignages</span>
+          <ChevronRight className="w-5 h-5 ml-auto text-gray-400 group-hover:text-[#0097b2] transition-colors duration-300" />
+        </a>
+      </nav>
+
+      {/* Footer avec CTA */}
+      <div className="p-6 border-t border-gray-100">
+        <button
+          className="group w-full flex items-center justify-center gap-3 text-white px-6 py-4 rounded-2xl font-semibold shadow-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-white"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <Send className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+          <span className="text-lg">Rejoindre la liste</span>
+        </button>
+        
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-500">
+            Rejoignez <span className="font-semibold text-[#0097b2]">10,000+</span> utilisateurs
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
       </motion.header>
 
       {/* Hero Section */}
